@@ -12,6 +12,12 @@ pipeline {
       }
     }
     
+    stage('Checkpoint') {
+         agent none
+         steps {
+            checkpoint 'Checkpoint'
+         }
+      }    
     
     stage('Testing') {
         failFast true
@@ -46,11 +52,14 @@ pipeline {
         }
       }
     }
+    
     stage('Say Kernel') {
       steps {
         echo "${KERNEL_VERSION}"
       }
     }
+    
+    
   }
   environment {
     MY_NAME = 'Terry'
